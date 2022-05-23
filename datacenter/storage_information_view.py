@@ -4,7 +4,6 @@ from django.shortcuts import render
 
 
 def storage_information_view(request):
-    # Программируем здесь
     curr_visits = Visit.objects.filter(leaved_at=None)
     opened_visits = [
         {
@@ -16,6 +15,6 @@ def storage_information_view(request):
     ]
 
     context = {
-        'non_closed_visits': opened_visits,  # не закрытые посещения
+        'non_closed_visits': opened_visits,
     }
     return render(request, 'storage_information.html', context)
