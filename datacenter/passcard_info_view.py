@@ -6,9 +6,7 @@ from django.shortcuts import render
 def is_visit_long(visit_to_check, minutes=60):
     time_to_check = minutes*60
     visit_duration = visit_to_check.get_visit_duration().total_seconds()
-    if visit_duration > time_to_check:
-        return True
-    return False
+    return visit_duration > time_to_check
 
 def passcard_info_view(request, passcode):
     passcard = Passcard.objects.filter(passcode=passcode)[0]
