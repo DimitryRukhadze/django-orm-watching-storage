@@ -45,3 +45,8 @@ class Visit(models.Model):
         hours = int(duration_in_seconds // 3600)
         minutes = int((duration_in_seconds % 3600) // 60)
         return f'{hours}:{minutes}:00'
+
+    def is_visit_long(self, minutes=60):
+        time_to_check = minutes * 60
+        visit_duration = self.get_visit_duration().total_seconds()
+        return visit_duration > time_to_check

@@ -3,11 +3,6 @@ from datacenter.models import Visit
 from django.shortcuts import render
 
 
-def is_visit_long(visit_to_check, minutes=60):
-    time_to_check = minutes*60
-    visit_duration = visit_to_check.get_visit_duration().total_seconds()
-    return visit_duration > time_to_check
-
 def passcard_info_view(request, passcode):
     passcard = Passcard.objects.filter(passcode=passcode)[0]
 
@@ -15,7 +10,7 @@ def passcard_info_view(request, passcode):
         {
             'entered_at': visit.entered_at,
             'duration': visit.format_duration(),
-            'is_strange': is_visit_long(visit)
+            'is_strange': visit.is_visit_long()
         }
         for visit in Visit.objects.filter(passcard=passcard.pk)
     ]
