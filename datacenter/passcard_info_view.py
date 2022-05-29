@@ -7,7 +7,7 @@ def passcard_info_view(request, passcode):
     passcard = Passcard.objects.filter(passcode=passcode)[0]
     passcard_visits = Visit.objects.filter(passcard=passcard.pk)
 
-    this_passcard_visits = [
+    passcard_visits_serialized = [
         {
             'entered_at': visit.entered_at,
             'duration': visit.format_duration(),
@@ -18,6 +18,6 @@ def passcard_info_view(request, passcode):
 
     context = {
         'passcard': passcard,
-        'this_passcard_visits': this_passcard_visits
+        'this_passcard_visits': passcard_visits_serialized
     }
     return render(request, 'passcard_info.html', context)
