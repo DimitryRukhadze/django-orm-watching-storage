@@ -3,4 +3,4 @@
 *.lock
 *.toml
 .replit
-__pycache__
+*__pycache__
