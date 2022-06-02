@@ -12,9 +12,9 @@ DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = 'REPLACE_ME'
+SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = env.bool("DEBUG_SETTING")
+DEBUG = env.bool("DEBUG")
 
 ROOT_URLCONF = 'project.urls'
 
